@@ -1,0 +1,78 @@
+<html>
+<head>
+<!--PIECHART-->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script src="http://code.highcharts.com/highcharts.js"></script>
+		<script src="http://code.highcharts.com/modules/exporting.js"></script>
+
+		<div id="container" style="position:relative; width: 100%; height:100%; margin: 0 auto"></div>
+
+		<script>
+		$(function () {
+
+			$(document).ready(function () {
+
+				// Build the chart
+				$('#container').highcharts({
+					chart: {
+						plotBackgroundColor: null,
+						plotBorderWidth: null,
+						plotShadow: false,
+						type: 'pie'
+					},
+					title: {
+						text: 'Participation in Activities'
+					},
+					tooltip: {
+						pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+					},
+					plotOptions: {
+						pie: {
+							allowPointSelect: true,
+							cursor: 'pointer',
+							dataLabels: {
+								enabled: false
+							},
+							showInLegend: true
+						}
+					},
+					series: [{
+						name: "Percentage of Participation",
+						colorByPoint: true,
+						data: [ {
+							name: "Sports",
+							y: 42.4,
+							sliced: true,
+							selected: true
+						}, {
+							name: "Performing Arts",
+							y: 27.5
+						}, {
+							name: "Academic Clubs",
+							y: 26.2
+						}, {
+							name: "Vocational/Professional Clubs",
+							y: 20.8
+						}, {
+							name: "Honor Societies",
+							y: 18.1
+						}, {
+							name: "Publications",
+							y: 17.0
+						}, {
+							name: "Student Government",
+							y: 15.5
+						}, {
+							name: "Service Clubs",
+							y: 15.2
+						},  {
+							name: "Hobby Clubs",
+							y: 8.5
+						}]
+					}]
+				});
+			});
+		});
+		</script>
+</head>
+</html>

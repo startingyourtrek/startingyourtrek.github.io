@@ -1,0 +1,341 @@
+<html>
+<head>
+<style>  <!--STYLING THE MAP, THE NAVIGATION, THE LOGO AND THE SLIDESHOW-->
+<!--body { margin:0; padding:0; }
+	  #container1 { position:relative; margin: 10px auto; width: 80%;}
+	  #map { position:relative; height:400; width:900; bottom:-100; left:120; }-->
+	  
+.homepagecontainer > ul > li.active a {
+    background-color: #FF9900;
+    color:#FFFFFF ;
+}
+.pic {
+    float:right;
+    width:20%;
+    height:20%;
+}
+IMG.displayed {
+    display: block;
+    margin-left: auto;
+    margin-right: auto 
+}
+</style>
+</head>
+
+<body>
+    <!---START OF HOME PAGE--->
+   <div data-role="HOMEpage" id="home" class="background">
+		<table style="width:100%">
+  <tr>
+    <td>  <div data-role="header"> <h1>TREK</h1> </div></td> 
+    <td><div><img id="picHolder" class= "pic" src="https://scontent-ord1-1.xx.fbcdn.net/hphotos-xtf1/v/t1.0-9/11846547_1003241123041080_8363083116903535769_n.jpg?oh=a2bb06139dd476e657f69626e97e4036&oe=563FD64E"/></div></td>		
+ <tr>  </table>
+		
+       
+       
+<!--DOCTYPE html-->
+  <title>Starting Your Trek</title>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  
+<body>
+<!--The TABS-->
+<div class="homepagecontainer">
+<!--  <h2>Dynamic Tabs</h2>-->
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#home">Home</a></li>
+    <li><a href="#sports">Sports</a></li>
+    <li><a href="#arts">Fine Arts</a></li>
+    <li><a href="#education">Educational</a></li>
+	<li><a href="#volunteer">Volunteer</a></li>
+    <li><a href="#travel">Travel</a></li>
+  </ul>
+ 
+<!--home data-->
+  <div class="tab-content">
+    <div id="home" class="tab-pane fade in active">
+      <h3>HOME</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+	  <br>
+	  <br>
+	  <!--SLIDESHOW-->
+		<body>
+		<script type="text/javascript">
+		var slideimages = new Array() // create new array to preload images
+		slideimages[0] = new Image() // create new instance of image object
+		slideimages[0].src = "http://i61.tinypic.com/dfbyt.jpg" 
+		slideimages[1] = new Image()
+		slideimages[1].src = "http://i60.tinypic.com/2vjrcat.jpg"
+		slideimages[2] = new Image()
+		slideimages[2].src = "http://i57.tinypic.com/2eex08l.jpg"
+		</script>
+		
+		<img class="displayed" height="400" width="900" style=vertical-align:"middle" src="http://i61.tinypic.com/dfbyt.jpg" id="slide"  />
+		<script type="text/javascript">
+
+		//variable that will increment through the images
+		var step=0
+
+		function slideit(){
+		 //if browser does not support the image object, exit.
+		 if (!document.images)
+		  return
+		 document.getElementById('slide').src = slideimages[step].src
+		 if (step<2)
+		  step++
+		 else
+		  step=0
+		 //call function "slideit()" every 2.5 seconds
+		 setTimeout("slideit()",2500)
+		}
+		slideit()
+		</script>
+		</body>
+		
+		<!--
+		<body>
+		<!--MAPBOX--
+		<meta charset=utf-8 />
+		<title>These are a few of my favorite places</title>
+		<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+		<script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.9/mapbox.js'></script>
+		<script src='https://code.jquery.com/jquery-2.1.4.js'></script>
+		<script src="tabletop1.js"></script>
+		<link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.9/mapbox.css' rel='stylesheet' />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+		<div id='container1'>
+			<div id='map'></div>
+		</div>
+		<script>
+		 L.mapbox.accessToken = 'pk.eyJ1IjoiamVmZnN0ZXJuIiwiYSI6IlAzRFFiN0EifQ.mNWvayrLEw9wULuq0sopyA';
+		var map = L.mapbox.map('map', 'mapbox.pirates')
+		  .setView([38.12367, -76.81229], 9);
+
+		var myLayer = L.mapbox.featureLayer().addTo(map);
+		var geojson;
+		var origjson;
+
+		$(document).ready(function(){
+			var URL = "1vAgy-We0uSG12LNsbU8WfZuYtrrmgTEHsf51_MBxO3o";
+			Tabletop.init( { key: URL, callback: convertToGeoJSON, simpleSheet: true } )
+		});
+
+		function convertToGeoJSON(data) {
+			console.log(data);
+			origjson = data;
+			places = []
+			for(i = 0; i < 26; i++) {
+				console.log(data[i]);
+				place = { type: 'Feature',             
+				properties: {
+							title: data[i]["nameofprogram"],
+							description: data[i]["locationofprogram"],
+							'marker-color':"#990099",
+							'marker-size': 'large',
+							'marker-symbol': "marker",
+						},
+						geometry: {
+							type: 'Point',
+							coordinates: [data[i]["longitude"], data[i]["latitude"]],
+						}
+				}
+				places.push(place);
+			}
+			geojson = { type: 'FeaturesCollection', features: places};
+			setupMap(geojson);
+		}
+
+		function setupMap(geo) {
+			myLayer.setGeoJSON(geo); // Adds all of the points to the map
+			map.fitBounds(myLayer.getBounds());
+		}
+		</script>
+		</body> -->
+		
+		<body>
+		<!--PIECHART-->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script src="http://code.highcharts.com/highcharts.js"></script>
+		<script src="http://code.highcharts.com/modules/exporting.js"></script>
+
+		<div id="container" style="position:relative; width: 400px; bottom:-200px; height: 400px; left:300; margin: 0 auto"></div>
+
+		<script>
+		$(function () {
+
+			$(document).ready(function () {
+
+				// Build the chart
+				$('#container').highcharts({
+					chart: {
+						plotBackgroundColor: null,
+						plotBorderWidth: null,
+						plotShadow: false,
+						type: 'pie'
+					},
+					title: {
+						text: 'Participation in Activities'
+					},
+					tooltip: {
+						pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+					},
+					plotOptions: {
+						pie: {
+							allowPointSelect: true,
+							cursor: 'pointer',
+							dataLabels: {
+								enabled: false
+							},
+							showInLegend: true
+						}
+					},
+					series: [{
+						name: "Percentage of Participation",
+						colorByPoint: true,
+						data: [ {
+							name: "Sports",
+							y: 42.4,
+							sliced: true,
+							selected: true
+						}, {
+							name: "Performing Arts",
+							y: 27.5
+						}, {
+							name: "Academic Clubs",
+							y: 26.2
+						}, {
+							name: "Vocational/Professional Clubs",
+							y: 20.8
+						}, {
+							name: "Honor Societies",
+							y: 18.1
+						}, {
+							name: "Publications",
+							y: 17.0
+						}, {
+							name: "Student Government",
+							y: 15.5
+						}, {
+							name: "Service Clubs",
+							y: 15.2
+						},  {
+							name: "Hobby Clubs",
+							y: 8.5
+						}]
+					}]
+				});
+			});
+		});
+		</script>
+		</body>
+		
+		<body>
+		<!--BARGRAPH-->
+		<script src="http://code.highcharts.com/highcharts.js"></script>
+		<script src="http://code.highcharts.com/modules/exporting.js"></script>
+
+		<div id="container2" style="position:relative; width: 400px; height: 400px; top:-200; right:250; margin: 0 auto"></div>
+		<script>
+		$(function () {
+			$('#container2').highcharts({
+				chart: {
+					type: 'bar'
+				},
+				title: {
+					text: 'Historic World Population by Region'
+				},
+				subtitle: {
+					text: 'Source: <a href="https://en.wikipedia.org/wiki/World_population">Wikipedia.org</a>'
+				},
+				xAxis: {
+					categories: ['No Unexcused Absences', 'Never Skipped Classes', 'GPA of 3.0 or Above', 'Highest Quartile Composite Math & Reading Assesment', 'Expect to Earn Bachelor Degree'],
+					title: {
+						text: null
+					}
+				},
+				yAxis: {
+					min: 0,
+					title: {
+						text: 'Participants',
+						align: 'high'
+					},
+					labels: {
+						overflow: 'justify'
+					}
+				},
+				tooltip: {
+					valueSuffix: 'percentage'
+				},
+				plotOptions: {
+					bar: {
+						dataLabels: {
+							enabled: true
+						}
+					}
+				},
+				legend: {
+					layout: 'vertical',
+					align: 'right',
+					verticalAlign: 'top',
+					x: -40,
+					y: 80,
+					floating: true,
+					borderWidth: 1,
+					backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+					shadow: true
+				},
+				credits: {
+					enabled: false
+				},
+				series: [{
+					name: 'Participants',
+					data: [50.4, 50.7, 30.6, 29.8, 68.2]
+				}, {
+					name: 'Nonparticipants',
+					data: [36.2, 42.3, 10.8, 14.2, 48.2]
+				}, ]
+			});
+		});
+		</script>
+		</body>
+	</div>
+		
+ <!--Sports-->
+    <div id="sports" class="tab-pane fade">
+      <h3>SPORTS</h3>
+      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    </div>
+<!--Fine Arts-->
+    <div id="arts" class="tab-pane fade">
+      <h3>ARTS</h3>
+      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+    </div>
+<!--Education-->
+    <div id="education" class="tab-pane fade">
+      <h3>EDUCATION</h3>
+      <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+    </div>
+<!--Volunteer-->
+    <div id="volunteer" class="tab-pane fade">
+      <h3>Volunteer</h3>
+      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    </div>
+ <!--TRAVEL-->
+    <div id="travel" class="tab-pane fade">
+      <h3>Menu 2</h3>
+      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+$(document).ready(function(){
+    $(".nav-tabs a").click(function(){
+        $(this).tab('show');
+    });
+});
+</script>
+</body>
+</html>

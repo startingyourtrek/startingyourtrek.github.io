@@ -1,0 +1,64 @@
+<html>
+<head>
+	<meta charset=utf-8 />
+	<title>These are a few of my favorite places</title>
+	<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+	<script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.9/mapbox.js'></script>
+	<script src='https://code.jquery.com/jquery-2.1.4.js'></script>
+	<script src="tabletop1.js"></script>
+	<link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.9/mapbox.css' rel='stylesheet' />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+	<div id='container1'>
+		<div id='map'></div>
+	<style>
+		body { margin:0; padding:0; }
+			#container1 { position:relative; width: 100%;}
+			#map { height:100%; width:100% }
+	</style>
+	<script>
+		L.mapbox.accessToken = 'pk.eyJ1IjoiamVmZnN0ZXJuIiwiYSI6IlAzRFFiN0EifQ.mNWvayrLEw9wULuq0sopyA';
+		var map = L.mapbox.map('map', 'mapbox.run-bike-hike')
+			.setView([38.12367, -76.81229], 9);
+
+		var myLayer = L.mapbox.featureLayer().addTo(map);
+		var geojson;
+		var origjson;
+
+		$(document).ready(function(){
+			var URL = "1vAgy-We0uSG12LNsbU8WfZuYtrrmgTEHsf51_MBxO3o";
+			Tabletop.init( { key: URL, callback: convertToGeoJSON, simpleSheet: true } )
+		});
+
+		function convertToGeoJSON(data) {
+			console.log(data);
+			origjson = data;
+			places = []
+			for(i = 0; i < 26; i++) {
+				console.log(data[i]);
+				place = { type: 'Feature',             
+				properties: {
+							title: data[i]["nameofprogram"],
+							description: data[i]["locationofprogram"],
+							'marker-color':"#990099",
+							'marker-size': 'large',
+							'marker-symbol': "marker",
+						},
+						geometry: {
+							type: 'Point',
+							coordinates: [data[i]["longitude"], data[i]["latitude"]],
+						}
+				}
+				places.push(place);
+			}
+			geojson = { type: 'FeaturesCollection', features: places};
+			setupMap(geojson);
+		}
+
+		function setupMap(geo) {
+			myLayer.setGeoJSON(geo); // Adds all of the points to the map
+			map.fitBounds(myLayer.getBounds());
+		}
+	</script>
+</head>
+</html>

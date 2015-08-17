@@ -1,0 +1,99 @@
+<html>
+<head>
+<style>
+.container > ul > li.active a {
+    background-color: #FF9900;
+    color:#FFFFFF ;
+}
+.pic {
+    float:right;
+    width:20%;
+    height:20%;
+}
+</style>
+</head>
+<body>
+    <!---START OF HOME PAGE--->
+   <div data-role="HOMEpage" id="home" class="background">
+      <!---JACQuelene Copy-->
+      <table style="width:100%">
+  <tr>
+      <td>  <div data-role="header"> <h1>TREK</h1> </div></td>
+    <td><div><img id="picHolder" class= "pic" src="https://scontent-ord1-1.xx.fbcdn.net/hphotos-xtf1/v/t1.0-9/11846547_1003241123041080_8363083116903535769_n.jpg?oh=a2bb06139dd476e657f69626e97e4036&oe=563FD64E"/></div></td>		
+ <tr>  </table>
+ <!---JACQuelene Copy-->   
+       
+       
+
+<!--DOCTYPE html-->
+  <title>Bootstrap Case</title>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+<body>
+<!--The TABS-->
+<div class="container">
+<!--  <h2>Dynamic Tabs</h2>-->
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#home">Home</a></li>
+    <li><a href="#sports">Sports</a></li>
+    <li><a href="#arts">Fine Arts</a></li>
+    <li><a href="#education">Educational</a></li>
+      <!---JACQuelene Copy--> 
+      
+    <li><a href="#volunteer">Volunteer</a></li>
+       <!---JACQuelene Copy-->
+      
+    <li><a href="#travel">Travel</a></li>
+  </ul>
+<!--home data-->
+  <div class="tab-content">
+    <div id="home" class="tab-pane fade in active">
+      <h3>HOME</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    </div>
+ <!--Sports-->
+    <div id="sports" class="tab-pane fade">
+      <h3>SPORTS</h3>
+      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      </div>
+<!--Fine Arts-->
+    <div id="arts" class="tab-pane fade">
+      <h3>ARTS</h3>
+      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+    </div>
+<!--Education-->
+    <div id="education" class="tab-pane fade">
+      <h3>EDUCATION</h3>
+      <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+    </div>
+      
+   <!---JACQuelene Copy-->    
+<!--Volunteer-->
+    <div id="volunteer" class="tab-pane fade">
+      <h3>Volunteer</h3>
+      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    </div>
+     <!---JACQuelene Copy-->  
+      
+      
+            
+
+ <!--TRAVEL-->
+    <div id="travel" class="tab-pane fade">
+      <h3>Menu 2</h3>
+      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+$(document).ready(function(){
+    $(".nav-tabs a").click(function(){
+        $(this).tab('show');
+    });
+});
+</script>
+</body>
+</html>
